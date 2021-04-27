@@ -18,4 +18,9 @@ class MembreController extends AbstractController
     {
         return $this->render('membre/inscription.html.twig');
     }
+    #[Route('/membre/profil', name: 'profil')]
+    public function profil(): Response
+    {
+        return $this->render('membre/profil.html.twig');
+    }
 }
