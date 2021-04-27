@@ -13,4 +13,9 @@ class MembreController extends AbstractController
     {
         return $this->render('membre/login.html.twig');
     }
+    #[Route('/membre/inscription', name: 'inscription')]
+    public function inscription(): Response
+    {
+        return $this->render('membre/inscription.html.twig');
+    }
 }
