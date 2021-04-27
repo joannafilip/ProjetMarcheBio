@@ -1,0 +1,35 @@
+{% extends "layout.html.twig" %}
+{% block content %}	
+	<link rel="stylesheet" href="{{ asset ('assets/css/product.css') }}">
+	<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background: radial-gradient(circle, rgba(147,203,85,1) 78%, rgba(134,193,133,1) 100%);">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center">
+					<div class="display-t">
+						<div class="display-tc animate-box" data-animate-effect="fadeIn">
+							<h1>Produit</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+<div class="wrapper1">
+    <div class="product-img">
+      <img src="http://bit.ly/2tMBBTd" height="420" width="327">
+    </div>
+    <div class="product-info">
+      <div class="product-text">
+        <h1>Harvest Vase</h1>
+        <h2>by studio and friends</h2>
+        <p>Harvest Vases are a reinterpretation<br> of peeled fruits and vegetables as<br> functional objects. The surfaces<br> appear to be sliced and pulled aside,<br> allowing room for growth. </p>
+      </div>
+      <div class="product-price-btn">
+        <p><span>78</span>$</p>
+        <button type="button">buy now</button>
+      </div>
+    </div>
+  </div>
+
+    {% endblock %}

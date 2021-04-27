@@ -38,4 +38,9 @@ class FrontController extends AbstractController
     {
         return $this->render('front/contact.html.twig');
     }
+    #[Route('/front/produit', name: 'produit')]
+    public function produit(): Response
+    {
+        return $this->render('front/produit.html.twig');
+    }
 }
