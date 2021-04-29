@@ -13,10 +13,10 @@ class MembreController extends AbstractController
     {
         return $this->render('membre/login.html.twig');
     }
-    #[Route('/membre/inscription', name: 'inscription')]
+    #[Route('/membre/inscription/client', name: 'inscriptionClient')]
     public function inscription(): Response
     {
-        return $this->render('membre/inscription.html.twig');
+        return $this->render('membre/inscriptionClient.html.twig');
     }
     #[Route('/membre/profil', name: 'profil')]
     public function profil(): Response
