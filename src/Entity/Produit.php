@@ -23,14 +23,34 @@ class Produit
     private $nom;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
-    private $quantite;
+    private $description;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    private $prix;
+    private $vendu;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $photo;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Commande::class, inversedBy="produits")
+     */
+    private $commande;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Type::class, inversedBy="produit")
+     */
+    private $type;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Publication::class, mappedBy="produit", cascade={"persist", "remove"})
+     */
+    private $publication;
 
     public function getId(): ?int
     {
@@ -49,26 +69,84 @@ class Produit
         return $this;
     }
 
-    public function getQuantite(): ?int
+    public function getDescription(): ?string
     {
-        return $this->quantite;
+        return $this->description;
     }
 
-    public function setQuantite(int $quantite): self
+    public function setDescription(string $description): self
     {
-        $this->quantite = $quantite;
+        $this->description = $description;
 
         return $this;
     }
 
-    public function getPrix(): ?float
+    public function getVendu(): ?bool
     {
-        return $this->prix;
+        return $this->vendu;
     }
 
-    public function setPrix(float $prix): self
+    public function setVendu(?bool $vendu): self
     {
-        $this->prix = $prix;
+        $this->vendu = $vendu;
+
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?string $photo): self
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getCommande(): ?Commande
+    {
+        return $this->commande;
+    }
+
+    public function setCommande(?Commande $commande): self
+    {
+        $this->commande = $commande;
+
+        return $this;
+    }
+
+    public function getType(): ?Type
+    {
+        return $this->type;
+    }
+
+    public function setType(?Type $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getPublication(): ?Publication
+    {
+        return $this->publication;
+    }
+
+    public function setPublication(?Publication $publication): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($publication === null && $this->publication !== null) {
+            $this->publication->setProduit(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($publication !== null && $publication->getProduit() !== $this) {
+            $publication->setProduit($this);
+        }
+
+        $this->publication = $publication;
 
         return $this;
     }
