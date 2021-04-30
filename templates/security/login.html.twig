@@ -1,0 +1,49 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}	
+<link rel="stylesheet" href="{{ asset ('assets/css/login.css') }}">
+	<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background: radial-gradient(circle, rgba(147,203,85,1) 78%, rgba(134,193,133,1) 100%);">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center">
+					<div class="display-t">
+						<div class="display-tc animate-box" data-animate-effect="fadeIn">
+							<h1>Se connecter</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <form  method="post"  class="box">
+           {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+          <p class="text-muted">Veuillez saisir votre login et mot de passe</p>
+          <input type="text" name="email" value ="{{ last_username }}" placeholder="Email" />
+          <input type="password" name="password" placeholder="Mot de passe" />
+           <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+          <a class="forgot text-muted" href="{{ path ('accueilInscription') }}">Vous n'etes pas encore inscrites ?</a>
+          <input type="submit" name="" value="Se connecter" href="" />
+          <div class="col-md-12">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

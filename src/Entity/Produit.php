@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Entity;
-
+use Doctrine\Common\Collections\ArrayCollection;
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -10,6 +10,15 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Produit
 {
+    public function hydrate(array $init)
+    {
+        foreach ($init as $key => $value) {
+            $method = "set" . ucfirst($key);
+            if (method_exists($this, $method)) {
+                $this->$method($value);
+            }
+        }
+    }
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -51,6 +60,11 @@ class Produit
      * @ORM\OneToOne(targetEntity=Publication::class, mappedBy="produit", cascade={"persist", "remove"})
      */
     private $publication;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $prix;
 
     public function getId(): ?int
     {
@@ -147,6 +161,18 @@ class Produit
         }
 
         $this->publication = $publication;
+
+        return $this;
+    }
+
+    public function getPrix(): ?float
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(float $prix): self
+    {
+        $this->prix = $prix;
 
         return $this;
     }

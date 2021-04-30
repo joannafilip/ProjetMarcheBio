@@ -8,11 +8,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MembreController extends AbstractController
 {
-    #[Route('/membre/login', name: 'login')]
-    public function login(): Response
-    {
-        return $this->render('membre/login.html.twig');
-    }
+    // #[Route('/membre/login', name: 'login')]
+    // public function login(): Response
+    // {
+    //     return $this->render('membre/login.html.twig');
+    // }
     #[Route('/membre/accueil/inscription', name: 'accueilInscription')]
     public function accueilInscription(): Response
     {

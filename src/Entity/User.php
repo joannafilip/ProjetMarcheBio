@@ -81,8 +81,18 @@ class User implements UserInterface
      */
     private $ville;
 
+    // public function hydrate(array $init)
+    // {
+    //     foreach ($init as $key => $value) {
+    //         $method = "set" . ucfirst($key);
+    //         if (method_exists($this, $method)) {
+    //             $this->$method($value);
+    //         }
+    //     }
+    // }
     public function __construct()
     {
+        // $this->hydrate ($init);
         $this->commandes = new ArrayCollection();
         $this->publications = new ArrayCollection();
     }
