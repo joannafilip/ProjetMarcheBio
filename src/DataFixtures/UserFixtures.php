@@ -22,7 +22,7 @@ class UserFixtures extends Fixture
             $user->setEmail ("joanna".$i."@gmail.com");
             $user->setPassword($this->passwordEncoder->encodePassword(
                  $user,
-                 'joanna'.$i // lepassword1, lepassword2, etc...
+                 'joanna'.$i
              ));
             $user->setNom("Filip".$i);
             $user->setPrenom("Joanna".$i);
@@ -32,17 +32,20 @@ class UserFixtures extends Fixture
             $user->setRoles(['ROLE_CLIENT']);
             $manager->persist ($user);
         }
-        // for ($i = 0; $i < 5 ; $i++){
-        //     $user = new User();
-        //     $user->setEmail ("autreuser".$i."@lala.com"); // user1@lala.com, user2@lala.com etc....
-        //     $user->setPassword($this->passwordEncoder->encodePassword(
-        //          $user,
-        //          'lePassword'.$i // lepassword1, lepassword2, etc...
-        //      ));
-        //     $user->setNom("nom".$i);
-        //     $user->setRoles(['ROLE_CLIENT','ROLE_GESTIONNAIRE']);
-        //     $manager->persist ($user);
-        // }
+            $user = new User();
+            $user->setEmail ("anna@gmail.com");
+            $user->setPassword($this->passwordEncoder->encodePassword(
+                 $user,
+                 'joanna'
+             ));
+            $user->setNom("Filip");
+            $user->setPrenom("Anna");
+            $user->setRue("rue de la pomme");
+            $user->setVille("Bruxelles");
+            $user->setCp("1000");
+            $user->setRoles(['ROLE_PRODUCTEUR']);
+            $manager->persist ($user);
+
         $manager->flush();
     }
 }

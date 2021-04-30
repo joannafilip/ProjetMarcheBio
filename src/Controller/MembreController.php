@@ -33,4 +33,9 @@ class MembreController extends AbstractController
     {
         return $this->render('membre/profil.html.twig');
     }
+    // #[Route('/membre/profil/producteur', name: 'profilProducteur')]
+    // public function profilProducteur(): Response
+    // {
+    //     return $this->render('membre/profilProducteur.html.twig');
+    // }
 }
