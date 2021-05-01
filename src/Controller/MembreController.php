@@ -18,11 +18,11 @@ class MembreController extends AbstractController
     {
         return $this->render('membre/accueilInscription.html.twig');
     }
-    #[Route('/membre/inscription/client', name: 'inscriptionClient')]
-    public function inscription(): Response
-    {
-        return $this->render('membre/inscriptionClient.html.twig');
-    }
+    // #[Route('/membre/inscription/client', name: 'inscriptionClient')]
+    // public function inscription(): Response
+    // {
+    //     return $this->render('membre/inscriptionClient.html.twig');
+    // }
     #[Route('/membre/inscription/producteur', name: 'inscriptionProducteur')]
     public function inscriptionProducteur(): Response
     {
