@@ -36,7 +36,7 @@
                     <div class="col-md-6">
                         <div class="profile-head">
                                     <h5>
-                                        Kshiti Ghelani
+                                        {{app.user.username}}
                                     </h5>
                                     <h6>
                                         Web Developer and Designer
@@ -68,7 +68,7 @@
                             <a href="">Web Developer</a><br/>
                             <a href="">WordPress</a><br/>
                             <a href="">WooCommerce</a><br/>
-                            <a href="">PHP, .Net</a><br/>
+                            <a href="{{ path ('app_logout') }}">Logout</a><br/>
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -190,7 +190,7 @@
                             <a href="">Web Developer</a><br/>
                             <a href="">WordPress</a><br/>
                             <a href="">WooCommerce</a><br/>
-                            <a href="">PHP, .Net</a><br/>
+                            <a href="{{ path ('app_logout') }}">Logout</a><br/>
                         </div>
                     </div>
                     <div class="col-md-8">
