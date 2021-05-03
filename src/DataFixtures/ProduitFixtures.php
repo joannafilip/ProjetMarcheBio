@@ -12,7 +12,7 @@ class ProduitFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $data = ['jus de poire', 'pommes', 'carottes', 'fromage','pain', 'biscuit'];
+        $data = ['jus de poire', 'pommes', 'carottes', 'fromage','pain', 'biscuit', 'concombres', 'tomates', 'yaourt'];
         for ($i = 0; $i < count($data); $i++){
             $produit = new Produit();
             $produit->setNom($data[$i]);

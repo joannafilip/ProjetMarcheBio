@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Produit;
 
 class FrontController extends AbstractController
 {
@@ -16,7 +17,12 @@ class FrontController extends AbstractController
     #[Route('/front/produits', name: 'produits')]
     public function produits(): Response
     {
-        return $this->render('front/produits.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $rep = $em->getRepository(Produit::class);
+        $arrProduits = $rep->findAll();
+        $vars = ['arrProduits' => $arrProduits];
+
+        return $this->render('front/produits.html.twig', $vars);
     }
     #[Route('/front/producteurs', name: 'producteurs')]
     public function producteurs(): Response

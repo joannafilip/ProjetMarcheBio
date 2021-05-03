@@ -19,6 +19,16 @@ class ProduitRepository extends ServiceEntityRepository
         parent::__construct($registry, Produit::class);
     }
 
+    public function findAllNonVendu()
+    {
+        return $this->createQueryBuilder('p')
+        ->where('p.vendu=false')
+        ->getQuery()
+        ->getResult()
+        ->orderBy('p.nom', 'ASC');
+
+    }
+
     // /**
     //  * @return Produit[] Returns an array of Produit objects
     //  */
