@@ -22,15 +22,16 @@ class Publication
      */
     private $datePublication;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Produit::class, inversedBy="publication", cascade={"persist", "remove"})
-     */
-    private $produit;
-
+  
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="publications")
      */
     private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Produit::class, inversedBy="publications")
+     */
+    private $produit;
 
     public function getId(): ?int
     {
@@ -49,17 +50,6 @@ class Publication
         return $this;
     }
 
-    public function getProduit(): ?Produit
-    {
-        return $this->produit;
-    }
-
-    public function setProduit(?Produit $produit): self
-    {
-        $this->produit = $produit;
-
-        return $this;
-    }
 
     public function getUser(): ?User
     {
@@ -69,6 +59,18 @@ class Publication
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getProduit(): ?Produit
+    {
+        return $this->produit;
+    }
+
+    public function setProduit(?Produit $produit): self
+    {
+        $this->produit = $produit;
 
         return $this;
     }

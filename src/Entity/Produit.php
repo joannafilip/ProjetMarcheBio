@@ -3,6 +3,7 @@
 namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use App\Repository\ProduitRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -65,6 +66,16 @@ class Produit
      * @ORM\Column(type="float")
      */
     private $prix;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Publication::class, mappedBy="produit")
+     */
+    private $publications;
+
+    public function __construct()
+    {
+        $this->publications = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -143,27 +154,7 @@ class Produit
         return $this;
     }
 
-    public function getPublication(): ?Publication
-    {
-        return $this->publication;
-    }
 
-    public function setPublication(?Publication $publication): self
-    {
-        // unset the owning side of the relation if necessary
-        if ($publication === null && $this->publication !== null) {
-            $this->publication->setProduit(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($publication !== null && $publication->getProduit() !== $this) {
-            $publication->setProduit($this);
-        }
-
-        $this->publication = $publication;
-
-        return $this;
-    }
 
     public function getPrix(): ?float
     {
@@ -173,6 +164,36 @@ class Produit
     public function setPrix(float $prix): self
     {
         $this->prix = $prix;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Publication[]
+     */
+    public function getPublications(): Collection
+    {
+        return $this->publications;
+    }
+
+    public function addPublication(Publication $publication): self
+    {
+        if (!$this->publications->contains($publication)) {
+            $this->publications[] = $publication;
+            $publication->setProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removePublication(Publication $publication): self
+    {
+        if ($this->publications->removeElement($publication)) {
+            // set the owning side to null (unless already changed)
+            if ($publication->getProduit() === $this) {
+                $publication->setProduit(null);
+            }
+        }
 
         return $this;
     }
