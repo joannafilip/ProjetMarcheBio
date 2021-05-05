@@ -43,6 +43,7 @@ class UserFixtures extends Fixture
             $user->setRue("rue de la pomme");
             $user->setVille("Bruxelles");
             $user->setCp("1000");
+            $user->setNomProducteur('Brasserie de la senne');
             $user->setRoles(['ROLE_PRODUCTEUR']);
             $manager->persist ($user);
 

@@ -7,14 +7,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Publication;
 use App\Repository\PublicationRepository;
+use App\Repository\UserRepository;
 
 class FrontController extends AbstractController
 {
     #[Route('/front/index', name: 'index')]
     public function index(PublicationRepository $repository)
     {
-        // $em = $this->getDoctrine()->getManager();
-        // $rep = $em->getRepository(Publication::class);
         $publicationsMax6 = $repository->produitMax6();
         $vars = ['publicationsMax6' => $publicationsMax6];
         return $this->render('front/index.html.twig', $vars);
@@ -30,9 +29,11 @@ class FrontController extends AbstractController
         return $this->render('front/produits.html.twig', $vars);
     }
     #[Route('/front/producteurs', name: 'producteurs')]
-    public function producteurs(): Response
+    public function producteurs(UserRepository $repository)
     {
-        return $this->render('front/producteurs.html.twig');
+        $producteurs = $repository->getProducteurs();
+        $vars = ['producteurs' => $producteurs];
+        return $this->render('front/producteurs.html.twig', $vars);
     }
     #[Route('/front/apropos', name: 'apropos')]
     public function apropos(): Response
