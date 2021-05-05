@@ -23,7 +23,7 @@ class PublicationRepository extends ServiceEntityRepository
     {
         return $this
         ->createQueryBuilder("p")
-        // ->orderBy("p.datePublication", "DESC")
+        ->orderBy("p.datePublication", "DESC")
         ->setMaxResults(6)
         ->getQuery()
         ->getResult();
