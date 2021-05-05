@@ -19,6 +19,15 @@ class PublicationRepository extends ServiceEntityRepository
         parent::__construct($registry, Publication::class);
     }
 
+    public function produitMax6(): array
+    {
+        return $this
+        ->createQueryBuilder("p")
+        // ->orderBy("p.datePublication", "DESC")
+        ->setMaxResults(6)
+        ->getQuery()
+        ->getResult();
+    }
     // /**
     //  * @return Publication[] Returns an array of Publication objects
     //  */

@@ -5,22 +5,27 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Produit;
+use App\Entity\Publication;
+use App\Repository\PublicationRepository;
 
 class FrontController extends AbstractController
 {
     #[Route('/front/index', name: 'index')]
-    public function index(): Response
+    public function index(PublicationRepository $repository)
     {
-        return $this->render('front/index.html.twig');
+        // $em = $this->getDoctrine()->getManager();
+        // $rep = $em->getRepository(Publication::class);
+        $publicationsMax6 = $repository->produitMax6();
+        $vars = ['publicationsMax6' => $publicationsMax6];
+        return $this->render('front/index.html.twig', $vars);
     }
     #[Route('/front/produits', name: 'produits')]
     public function produits(): Response
     {
         $em = $this->getDoctrine()->getManager();
-        $rep = $em->getRepository(Produit::class);
-        $arrProduits = $rep->findAll();
-        $vars = ['arrProduits' => $arrProduits];
+        $rep = $em->getRepository(Publication::class);
+        $publications = $rep->findAll();
+        $vars = ['publications' => $publications];
 
         return $this->render('front/produits.html.twig', $vars);
     }
