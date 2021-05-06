@@ -19,7 +19,7 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create();
-        for ($i = 1; $i < 6 ; $i++){
+        for ($i = 0; $i < 6 ; $i++){
             $user = new User();
             $user->setEmail("client" . $i . "@gmail.com");
             $user->setPassword($this->passwordEncoder->encodePassword(
@@ -34,7 +34,8 @@ class UserFixtures extends Fixture
             $user->setRoles(['ROLE_CLIENT']);
             $manager->persist($user);
         }
-        for ($i = 1; $i < 7 ; $i++){
+        
+        for ($i = 0; $i < 7 ; $i++){
             $user = new User();
             $user->setEmail("producteur" . $i . "@gmail.com");
             $user->setPassword($this->passwordEncoder->encodePassword(

@@ -81,22 +81,22 @@
 						<li class="has-dropdown">
 							<a href="{{ path ('produits') }}">Produits</a>
 							<ul class="dropdown">
-								<li><a href="single.html">Legumes</a></li>
-								<li><a href="single.html">Fruits</a></li>
-								<li><a href="single.html">Boulangerie</a></li>
-								<li><a href="single.html">Cremerie</a></li>
-								<li><a href="single.html">Epicerie</a></li>
-								<li><a href="single.html">Boissons</a></li>
+								<li><a href="{{ path ('legumes') }}">Legumes</a></li>
+								<li><a href="{{ path ('fruits') }}">Fruits</a></li>
+								<li><a href="{{ path ('boulangerie') }}">Boulangerie</a></li>
+								<li><a href="{{ path ('cremerie') }}">Crèmerie</a></li>
+								<li><a href="{{ path ('epicerie') }}">Epicerie</a></li>
+								<li><a href="{{ path ('boissons') }}">Boissons</a></li>
 							</ul>
 						</li>
 							<li class="has-dropdown">
 							<a href="{{ path ('producteurs') }}">Producteurs</a>
-							<ul class="dropdown">
+							{# <ul class="dropdown">
 								<li><a href="#">Web Design</a></li>
 								<li><a href="#">eCommerce</a></li>
 								<li><a href="#">Branding</a></li>
 								<li><a href="#">API</a></li>
-							</ul>
+							</ul> #}
 						</li>
 						<li><a href="{{ path ('apropos') }}">A propos</a></li>
 						<li><a href="{{ path ('app_login') }}">Se connecter</a></li>

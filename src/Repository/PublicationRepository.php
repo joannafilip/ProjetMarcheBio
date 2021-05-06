@@ -28,6 +28,72 @@ class PublicationRepository extends ServiceEntityRepository
         ->getQuery()
         ->getResult();
     }
+    public function getLegumes()
+    {
+        return $this
+        ->createQueryBuilder("publication")
+        ->select("produit")
+        ->from('App\Entity\Produit' ,'produit') 
+        ->leftJoin('produit.type' ,'type')
+        ->andWhere("type.label LIKE '%legumes%'")
+        ->getQuery()
+        ->getResult();
+    }
+    public function getFruits()
+    {
+        return $this
+        ->createQueryBuilder("publication")
+        ->select("produit")
+        ->from('App\Entity\Produit' ,'produit') 
+        ->leftJoin('produit.type' ,'type')
+        ->andWhere("type.label LIKE '%fruits%'")
+        ->getQuery()
+        ->getResult();
+    }
+    public function getBoulangerie()
+    {
+        return $this
+        ->createQueryBuilder("publication")
+        ->select("produit")
+        ->from('App\Entity\Produit' ,'produit') 
+        ->leftJoin('produit.type' ,'type')
+        ->andWhere("type.label LIKE '%boulangerie%'")
+        ->getQuery()
+        ->getResult();
+    }
+    public function getCremerie()
+    {
+        return $this
+        ->createQueryBuilder("publication")
+        ->select("produit")
+        ->from('App\Entity\Produit' ,'produit') 
+        ->leftJoin('produit.type' ,'type')
+        ->andWhere("type.label LIKE '%cremerie%'")
+        ->getQuery()
+        ->getResult();
+    }
+    public function getEpicerie()
+    {
+        return $this
+        ->createQueryBuilder("publication")
+        ->select("produit")
+        ->from('App\Entity\Produit' ,'produit') 
+        ->leftJoin('produit.type' ,'type')
+        ->andWhere("type.label LIKE '%epicerie%'")
+        ->getQuery()
+        ->getResult();
+    }
+    public function getBoissons()
+    {
+        return $this
+        ->createQueryBuilder("publication")
+        ->select("produit")
+        ->from('App\Entity\Produit' ,'produit') 
+        ->leftJoin('produit.type' ,'type')
+        ->andWhere("type.label LIKE '%boissons%'")
+        ->getQuery()
+        ->getResult();
+    }
     // /**
     //  * @return Publication[] Returns an array of Publication objects
     //  */

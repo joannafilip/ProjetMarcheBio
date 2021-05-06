@@ -6,6 +6,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\Produit;
 use App\Entity\Type;
+use Faker;
 
 class ProduitFixtures extends Fixture 
 {
@@ -25,7 +26,7 @@ class ProduitFixtures extends Fixture
         
         $manager->flush();
         $types = $manager->getRepository(Type::class)->findAll();
-        
+        $faker = Faker\Factory::create();
         for ($i = 0; $i < count($dataProduits); $i++)
         {
             $produit = new Produit();
