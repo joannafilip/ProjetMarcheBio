@@ -6,6 +6,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\User;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Faker;
 
 class UserFixtures extends Fixture
 {
@@ -17,36 +18,41 @@ class UserFixtures extends Fixture
     }
     public function load(ObjectManager $manager)
     {
-        for ($i = 0; $i < 5 ; $i++){
+        $faker = Faker\Factory::create();
+        for ($i = 1; $i < 6 ; $i++){
             $user = new User();
-            $user->setEmail ("joanna".$i."@gmail.com");
+            $user->setEmail("client" . $i . "@gmail.com");
             $user->setPassword($this->passwordEncoder->encodePassword(
                  $user,
-                 'joanna'.$i
+                 'client' . $i
              ));
-            $user->setNom("Filip".$i);
-            $user->setPrenom("Joanna".$i);
-            $user->setRue("Avenue Charles".$i);
-            $user->setVille("Bruxelles".$i);
-            $user->setCp("1000".$i);
+            $user->setNom($faker->firstName);
+            $user->setPrenom($faker->lastname);
+            $user->setRue($faker->streetName);
+            $user->setVille('Bruxelles');
+            $user->setCp($faker->postcode);
             $user->setRoles(['ROLE_CLIENT']);
-            $manager->persist ($user);
+            $manager->persist($user);
         }
+        for ($i = 1; $i < 7 ; $i++){
             $user = new User();
-            $user->setEmail ("anna@gmail.com");
+            $user->setEmail("producteur" . $i . "@gmail.com");
             $user->setPassword($this->passwordEncoder->encodePassword(
                  $user,
-                 'joanna'
+                 'producteur' . $i
              ));
-            $user->setNom("Filip");
-            $user->setPrenom("Anna");
-            $user->setRue("rue de la pomme");
-            $user->setVille("Bruxelles");
-            $user->setCp("1000");
-            $user->setNomProducteur('Brasserie de la senne');
+            $user->setNom($faker->firstName);
+            $user->setPrenom($faker->lastname);
+            $user->setRue($faker->streetName);
+            $user->setVille('Bruxelles');
+            $user->setCp($faker->postcode);
+            $user->setNumeroProducteur('454545' .$i +10);
+            $user->setNomProducteur($faker->company);
             $user->setRoles(['ROLE_PRODUCTEUR']);
-            $manager->persist ($user);
+            $manager->persist($user);
+        }
 
         $manager->flush();
     }
+    
 }
