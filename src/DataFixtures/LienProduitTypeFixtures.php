@@ -8,28 +8,28 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use App\Entity\Produit;
 use App\Entity\Type;
 
-class LienProduitTypeFixtures extends Fixture implements DependentFixtureInterface
+class LienProduitTypeFixtures extends Fixture 
 {
     public function load(ObjectManager $manager)
     {
-        $repType = $manager->getRepository(Produit::class);
-        $types = $repType->findAll();
+        // $repType = $manager->getRepository(Produit::class);
+        // $types = $repType->findAll();
         
-        $repProduit = $manager->getRepository(Type::class);
-        $produits = $repProduit->findAll();
+        // $repProduit = $manager->getRepository(Type::class);
+        // $produits = $repProduit->findAll();
 
-        foreach ($types as $type){
-            $produit = $produits[array_rand($produits)];
-            $produit->addProduit($type);
-        }
-        $manager->flush();
+        // foreach ($types as $type){
+        //     $produit = $produits[array_rand($produits)];
+        //     $produit->addProduit($type);
+        // }
+        // $manager->flush();
     }
 
-    public function getDependencies()
-    {
-        return [
-            TypeFixtures::class,
-            ProduitFixtures::class,
-        ];
-    }
+    // public function getDependencies()
+    // {
+    //     return [
+    //         TypeFixtures::class,
+    //         ProduitFixtures::class,
+    //     ];
+    // }
 }
