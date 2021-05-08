@@ -10,6 +10,7 @@ use App\Repository\PublicationRepository;
 use App\Repository\UserRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class FrontController extends AbstractController
 {
@@ -51,10 +52,23 @@ class FrontController extends AbstractController
         return $this->render('front/contact.html.twig');
     }
     #[Route('/front/produit/{id}', name: 'produit')]
-    public function produit($id, PublicationRepository $repo): Response
+    public function produit($id, Request $request, PublicationRepository $repo, SessionInterface $session): Response
     {
         $publication = $repo->find($id);
+        //add to basket handling
 
-        return $this->render('front/produit.html.twig', ['publication' => $publication]);
+        $basket = $session->get('basket', []);
+
+        if ($request->isMethod('POST')) {
+            $basket[$publication->getId()] = $publication;
+            $session->set('basket', $basket);
+        }
+
+        $isInBasket = array_key_exists($publication->getId(), $basket);
+
+        return $this->render('/front/produit.html.twig', [
+            'publication' => $publication,
+            'inBasket' => $isInBasket
+        ]);
     }
 }

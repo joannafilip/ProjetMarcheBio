@@ -28,7 +28,13 @@
       </div>
       <div class="product-price-btn">
         <p><span class="span1">{{publication.produit.prix}}</span>€</p>
-        <button type="button">J'achète</button>
+        <form method="post">
+        {% if inBasket %}
+        <button disabled>Ajouté dans le panier</button>
+        {% else %}
+        <button >J'achète</button>
+        {% endif %}
+        </form>
       </div>
     </div>
     <a href="{{ path ('index') }}" >Retour</a>
