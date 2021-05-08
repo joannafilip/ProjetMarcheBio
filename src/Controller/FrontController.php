@@ -46,9 +46,11 @@ class FrontController extends AbstractController
     {
         return $this->render('front/contact.html.twig');
     }
-    #[Route('/front/produit', name: 'produit')]
-    public function produit(): Response
+    #[Route('/front/produit/{id}', name: 'produit')]
+    public function produit($id, PublicationRepository $repo): Response
     {
-        return $this->render('front/produit.html.twig');
+        $publication = $repo->find($id);
+
+        return $this->render('front/produit.html.twig', ['publication' => $publication]);
     }
 }
