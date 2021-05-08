@@ -8,6 +8,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Publication;
 use App\Repository\PublicationRepository;
 use App\Repository\UserRepository;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 class FrontController extends AbstractController
 {
@@ -19,12 +21,14 @@ class FrontController extends AbstractController
         return $this->render('front/index.html.twig', $vars);
     }
     #[Route('/front/produits', name: 'produits')]
-    public function produits(): Response
+    public function produits(PaginatorInterface $paginator, Request $request): Response
     {
         $em = $this->getDoctrine()->getManager();
         $rep = $em->getRepository(Publication::class);
-        $publications = $rep->findAll();
-        $vars = ['publications' => $publications];
+        $publications = $paginator->paginate(
+            $rep->findAll(),
+            $request->query->getInt('page', 1), 6);
+            $vars = ['publications' => $publications];
 
         return $this->render('front/produits.html.twig', $vars);
     }
