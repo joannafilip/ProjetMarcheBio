@@ -1,0 +1,48 @@
+{% extends "layout.html.twig" %}
+{% block content %}	
+<link rel="stylesheet" href="{{ asset ('assets/css/produitsAchetes.css') }}">
+
+	<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background: radial-gradient(circle, rgba(147,203,85,1) 78%, rgba(134,193,133,1) 100%);">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center">
+					<div class="display-t">
+						<div class="display-tc animate-box" data-animate-effect="fadeIn">
+							<h1>Produits publiés</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+  <div class="row2">
+    <div class="box1">
+      <!-- List group-->
+      <ul class="list-group shadow">
+        {% for publication in app.user.publications %}
+        <!-- list group item-->
+        <li class="list-group-item">
+          <!-- Custom content-->
+          <div class="media align-items-lg-center  p-3">
+            <div class="media-body order-2 order-lg-1">
+              <h5 class="mt-0 font-weight-bold mb-2">Nom : {{publication.produit.nom}}</h5>
+              <h5 class="mt-0 font-weight-bold mb-2">Description : {{publication.produit.description}}</h5>
+              <h5 class="mt-0 font-weight-bold mb-2">Prix : {{publication.produit.prix}}€</h5> {% endfor %}
+
+           
+          </div>
+          <!-- End -->
+        </li>
+        <!-- End -->
+
+      </ul>
+    <a href="{{ path ('profil') }}" >Retour</a>
+       </br>
+       </br>
+      <!-- End -->
+    </div>
+  </div>
+
+{% endblock %}
