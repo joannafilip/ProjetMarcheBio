@@ -11,6 +11,7 @@ class ClientController extends AbstractController
     #[Route('/client/produitsAchetes', name: 'produitsAchetes')]
     public function produitsAchetes(): Response
     {
+        $this->getUser();
         return $this->render('client/produitsAchetes.html.twig');
     }
 }

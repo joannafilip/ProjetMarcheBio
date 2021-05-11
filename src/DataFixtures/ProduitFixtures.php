@@ -34,7 +34,6 @@ class ProduitFixtures extends Fixture
             $produit->setDescription($dataProduits[$i]. " :Trés bon produit" );
             $produit->setPrix($i + 5);
             $produit->setVendu(false); 
-            $manager->persist($produit);
             $produit->setType($types[$i]);
             $manager->persist($produit);
         }

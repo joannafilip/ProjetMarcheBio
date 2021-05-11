@@ -13,8 +13,6 @@ class ProducteurController extends AbstractController
     public function produitsPublies(): Response
     {
         $this->getUser();
-        // $publications = $repository->getUser();
-        // $vars = ['publications' => $publications];
         return $this->render('producteur/produitsPublies.html.twig');
     }
 }
