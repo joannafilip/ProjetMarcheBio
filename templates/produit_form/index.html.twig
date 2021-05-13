@@ -1,0 +1,12 @@
+{% extends "layout.html.twig" %}
+{% block content %}	
+{{ form_start(publicationForm) }}
+        {# {{ form_row(publicationForm.produit.type) }} #}
+
+          {# {% for type in publicationForm.produit.type %}
+         {{ form_row(type.label) }} 
+                   {% endfor %} #}
+        
+    {{ form_end(publicationForm) }}
+    
+    {% endblock %}

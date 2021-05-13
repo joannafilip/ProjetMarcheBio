@@ -28,6 +28,12 @@ class Type
      * @ORM\OneToMany(targetEntity=Produit::class, mappedBy="type")
      */
     private $produit;
+
+
+    public function __toString(){
+        return $this->label;
+    }
+    
     
     public function hydrate(array $init)
     {
