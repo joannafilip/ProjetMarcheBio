@@ -17,20 +17,20 @@
 	</header>
 <div class="wrapper1">
     <div class="product-img">
-      <img src="http://bit.ly/2tMBBTd" height="420" width="327">
+      <img src="{{asset('assets/images/product-1.jpg')}}" alt=""" height="420" width="327">
     </div>
     
     <div class="product-info">
       <div class="product-text">
         <h1>{{publication.produit.nom}}</h1>
-        <h2>{{publication.user.nomProducteur}}</h2>
+        <h2>Producteur : {{publication.user.nomProducteur}}</h2>
         <p>{{publication.produit.description}}</p>
       </div>
       <div class="product-price-btn">
         <p><span class="span1">{{publication.produit.prix}}</span>€</p>
         <form method="post">
         {% if inBasket %}
-        <button disabled>Ajouté dans le panier</button>
+        <button type="button" disabled>Ajouté dans le panier</button>
         {% else %}
         <button >J'achète</button>
         {% endif %}

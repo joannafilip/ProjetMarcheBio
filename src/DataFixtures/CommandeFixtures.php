@@ -19,7 +19,7 @@ class CommandeFixtures extends Fixture implements DependentFixtureInterface
         $users = $manager->getRepository(User::class)->findAll();
         $produits = $manager->getRepository(Produit::class)->findAll();
         $faker = Faker\Factory::create();
-        for ($i = 1; $i < 9; $i++)
+        for ($i = 5; $i < 9; $i++)
         {
             $commande = new Commande();
             $commande->setUser($users[$i]);

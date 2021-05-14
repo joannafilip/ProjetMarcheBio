@@ -12,9 +12,9 @@ class PublicationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('datePublication')
-            ->add('produit', ProduitFormType::class)
             
+            ->add('produit', ProduitFormType::class)
+            ->add('datePublication')
         ;
     }
 
