@@ -26,6 +26,12 @@
 				</div>
 			</div>
 			<div class="row">
+			 {{form_start(form)}}
+			 {{form_row(form.maxPrix)}}
+			  {{form_row(form.nomProduit)}}
+			  <input type="submit"  value="Rechercher" href="" /> 
+ 			 {{form_end(form)}}
+ </br>
 				{% for publication in publications %}
 				<div class="col-md-4 text-center animate-box">
 					<div class="product">

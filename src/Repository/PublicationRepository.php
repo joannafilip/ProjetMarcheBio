@@ -5,6 +5,10 @@ namespace App\Repository;
 use App\Entity\Publication;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\ProduitSearch;
+use App\Entity\Produit;
+
+
 
 /**
  * @method Publication|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +21,21 @@ class PublicationRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Publication::class);
+    }
+ 
+    public function findAllQuery (ProduitSearch $search){
+        // if ($search->getMaxPrix()){
+        //     return $this
+        //     ->createQueryBuilder('publication')
+        //     ->select('produit')
+        //     ->from('App\Entity\Produit','produit') 
+        //     ->join('produit.prix','prix')
+        //     ->andWhere('prix <= :maxPrix')
+        //     ->setParameter('maxPrix', $search->getMaxPrix())
+        //     ->getQuery()
+        //     ->getResult();
+        // }
+        return $this->findAll();
     }
 
     public function produitMax6(): array

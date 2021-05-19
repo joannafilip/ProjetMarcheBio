@@ -2,13 +2,12 @@
 
 namespace App\Controller;
 
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Publication;
 use App\Repository\PublicationRepository;
 use App\Repository\UserRepository;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -17,22 +16,12 @@ class FrontController extends AbstractController
     #[Route('/front/index', name: 'index')]
     public function index(PublicationRepository $repository)
     {
+        
         $publicationsMax6 = $repository->produitMax6();
         $vars = ['publicationsMax6' => $publicationsMax6];
         return $this->render('front/index.html.twig', $vars);
     }
-    #[Route('/front/produits', name: 'produits')]
-    public function produits(PaginatorInterface $paginator, Request $request): Response
-    {
-        $em = $this->getDoctrine()->getManager();
-        $rep = $em->getRepository(Publication::class);
-        $publications = $paginator->paginate(
-            $rep->findAll(),
-            $request->query->getInt('page', 1), 6);
-            $vars = ['publications' => $publications];
-
-        return $this->render('front/produits.html.twig', $vars);
-    }
+    
     #[Route('/front/producteurs', name: 'producteurs')]
     public function producteurs(UserRepository $repository)
     {
