@@ -16,7 +16,8 @@ class PublicationFixtures extends Fixture implements DependentFixtureInterface
     {
         // $product = new Product();
         // $manager->persist($product);
-        // $users = $manager->getRepository(User::class)->findBy(['roles'=>'ROLE_PRODUCTEUR']);
+        // $users = $manager->getRepository(User::class)->findBy (array('roles' => 'ROLE_PRODUCTEUR'));
+        //  $users = "SELECT u FROM App\Entity\User u WHERE u.roles => 'ROLE_PRODUCTEUR'";
         $users = $manager->getRepository(User::class)->findAll();
         $produits = $manager->getRepository(Produit::class)->findAll();
         
@@ -24,9 +25,10 @@ class PublicationFixtures extends Fixture implements DependentFixtureInterface
         for ($i = 0; $i < 9; $i++){
             $publication = new Publication();
             $publication->setDatePublication($faker->dateTime);
-            $publication->setUser($users[$i]);
             $publication->setProduit($produits[array_rand($produits)]);
+            $publication->setUser($users[array_rand($users)]);
             $manager->persist($publication);
+            
         }
         $manager->flush();
     }
